@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// nav.js
+function initNav() {
   const menuToggle = document.getElementById('menu-toggle');
   const navbar = document.getElementById('navbar');
   const navOverlay = document.getElementById('nav-overlay');
@@ -35,4 +36,4 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleMenu(false);
     }
   });
-});
+}
