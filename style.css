@@ -166,6 +166,28 @@ main {
   margin: 0 auto;
 }
 
+/* Mobile adjustments for the banner text and spacing */
+@media (max-width: 768px) {
+  /* Prevent horizontal scrolling on the entire page */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Reduce padding on the left/right of the banner */
+  .banner, 
+  .banner .section-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Reduce heading size and allow long words to wrap smoothly */
+  .banner h2 {
+    font-size: 2.2rem;       /* Shrinks font size on mobile */
+    overflow-wrap: break-word; /* Prevents text from clipping horizontally */
+    word-break: break-word;
+  }
+}
+
 /* Full-Width Page Sections */
 .page-section {
   width: 100%;
@@ -238,7 +260,17 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
+  flex-wrap: wrap; /* Allows the button to drop down on small screens */
   transition: all 0.3s ease;
+}
+
+/* Mobile rule for the view button */
+@media (max-width: 600px) {
+  .player-card .card-action { /* Replace with your button's class name */
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
 }
 
 .player-card:hover {
