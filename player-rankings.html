@@ -38,14 +38,27 @@
     <section class="page-section">
       <div class="section-content">
         
-        <!-- Search Bar Section -->
+        <!-- Search & Filter Controls -->
         <div class="search-container">
           <input 
             type="text" 
             id="player-search" 
             class="search-input" 
-            placeholder="Search player by name or role..."
+            placeholder="Search player name or team..."
           >
+          
+          <!-- Role Filter Dropdown -->
+          <select id="role-select" class="search-select">
+            <option value="">All Roles</option>
+            <option value="IGL">IGL</option>
+            <option value="Awper">Awper</option>
+            <option value="Entry Fragger">Entry Fragger</option>
+            <option value="Rifler">Rifler</option>
+            <option value="Support">Support</option>
+            <option value="Lurker">Lurker</option>
+            <option value="Anchor">Anchor</option>
+          </select>
+
           <button id="clear-search" class="btn-clear" style="display: none;">Clear</button>
         </div>
 
@@ -66,22 +79,29 @@
   <script>
     const container = document.getElementById('player-list');
     const searchInput = document.getElementById('player-search');
+    const roleSelect = document.getElementById('role-select');
     const clearBtn = document.getElementById('clear-search');
 
     // Sort players by rank ascending (#1, #2, #3...)
     playersData.sort((a, b) => a.rank - b.rank);
 
-    function renderPlayers(filterText = '') {
+    function renderPlayers(textQuery = '', roleQuery = '') {
       container.innerHTML = '';
-      
-      const filtered = playersData.filter(player => 
-        player.name.toLowerCase().includes(filterText.toLowerCase()) ||
-        player.role.toLowerCase().includes(filterText.toLowerCase()) ||
-        player.teamName.toLowerCase().includes(filterText.toLowerCase())
-      );
+
+      const filtered = playersData.filter(player => {
+        const textMatch = 
+          player.name.toLowerCase().includes(textQuery.toLowerCase()) ||
+          player.teamName.toLowerCase().includes(textQuery.toLowerCase());
+
+        // Case-insensitive inclusion search for roles (e.g. "IGL" matches "Awper / IGL")
+        const roleMatch = roleQuery === '' || 
+          player.role.toLowerCase().includes(roleQuery.toLowerCase());
+
+        return textMatch && roleMatch;
+      });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<p style="color: #a0a0b0; text-align: center; margin-top: 2rem;">No players found matching "${filterText}"</p>`;
+        container.innerHTML = `<p style="color: #a0a0b0; text-align: center; margin-top: 2rem;">No players found matching your filters.</p>`;
         return;
       }
 
@@ -110,28 +130,43 @@
       });
     }
 
-    // Load filter preference from Cookie on page load
-    const savedFilter = getCookie('playerSearchQuery');
-    if (savedFilter) {
-      searchInput.value = savedFilter;
-      clearBtn.style.display = 'inline-block';
-      renderPlayers(savedFilter);
-    } else {
-      renderPlayers();
+    function updateFiltersAndCookies() {
+      const textQuery = searchInput.value.trim();
+      const roleQuery = roleSelect.value;
+
+      // Persist preferences in cookies
+      setCookie('playerSearchQuery', textQuery, 30);
+      setCookie('playerRoleQuery', roleQuery, 30);
+
+      // Show/hide clear button
+      clearBtn.style.display = (textQuery || roleQuery) ? 'inline-block' : 'none';
+
+      renderPlayers(textQuery, roleQuery);
     }
 
-    // Save filter to Cookie on input
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      setCookie('playerSearchQuery', query, 30); // Save cookie for 30 days
-      clearBtn.style.display = query ? 'inline-block' : 'none';
-      renderPlayers(query);
-    });
+    // Load filter preferences from cookies on page load
+    const savedText = getCookie('playerSearchQuery');
+    const savedRole = getCookie('playerRoleQuery');
 
-    // Clear search filter
+    if (savedText) searchInput.value = savedText;
+    if (savedRole) roleSelect.value = savedRole;
+
+    if (savedText || savedRole) {
+      clearBtn.style.display = 'inline-block';
+    }
+
+    renderPlayers(searchInput.value.trim(), roleSelect.value);
+
+    // Event Listeners
+    searchInput.addEventListener('input', updateFiltersAndCookies);
+    roleSelect.addEventListener('change', updateFiltersAndCookies);
+
+    // Clear filters
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
-      setCookie('playerSearchQuery', '', -1); // Delete cookie
+      roleSelect.value = '';
+      setCookie('playerSearchQuery', '', -1);
+      setCookie('playerRoleQuery', '', -1);
       clearBtn.style.display = 'none';
       renderPlayers();
     });
