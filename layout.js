@@ -1,11 +1,18 @@
 $(document).ready(function() {
   // Load Shared Header
   $('#header-placeholder').load('header.html', function() {
-    // Run navigation setup after the header elements exist in the DOM
+    // Ensure wrapper acts as sticky block
+    $(this).css({
+        'position': 'sticky',
+        'top': '0',
+        'z-index': '1000'
+    });
+
+    // Run navigation setup
     if (typeof initNav === 'function') {
-      initNav();
+        initNav();
     }
-  });
+});
 
   // Load Shared Footer
   $('#footer-placeholder').load('footer.html', function() {

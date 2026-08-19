@@ -1,115 +1,5 @@
 const playersData = [
-  // --- Team Falcons ---
-  {
-    "id": "karrigan",
-    "rank": 35,
-    "name": "karrigan",
-    "role": "IGL",
-    "teamName": "Team Falcons",
-    "teamUrl": "teams/team-falcons.html",
-    "avatar": "images/player_images/karrigan.jpeg",
-    "age": 36,
-    "rating": "0.89",
-    "stats": { "firepower": 52, "entrying": 65, "trading": 60, "opening": 68, "clutching": 58, "sniping": 15, "utility": 92 }
-  },
-  {
-    "id": "niko",
-    "rank": 4,
-    "name": "NiKo",
-    "role": "Rifler / Entry Fragger",
-    "teamName": "Team Falcons",
-    "teamUrl": "teams/team-falcons.html",
-    "avatar": "images/player_images/niko.jpeg",
-    "age": 29,
-    "rating": "1.15",
-    "stats": { "firepower": 91, "entrying": 92, "trading": 85, "opening": 90, "clutching": 82, "sniping": 10, "utility": 75 }
-  },
-  {
-    "id": "teses",
-    "rank": 22,
-    "name": "TeSeS",
-    "role": "Rifler / Support",
-    "teamName": "Team Falcons",
-    "teamUrl": "teams/team-falcons.html",
-    "avatar": "images/player_images/teses.jpeg",
-    "age": 25,
-    "rating": "1.06",
-    "stats": { "firepower": 76, "entrying": 72, "trading": 80, "opening": 70, "clutching": 74, "sniping": 10, "utility": 84 }
-  },
-  {
-    "id": "m0nesy",
-    "rank": 3,
-    "name": "m0NESY",
-    "role": "AWPer",
-    "teamName": "Team Falcons",
-    "teamUrl": "teams/team-falcons.html",
-    "avatar": "images/player_images/m0nesy.jpeg",
-    "age": 21,
-    "rating": "1.27",
-    "stats": { "firepower": 96, "entrying": 85, "trading": 89, "opening": 90, "clutching": 92, "sniping": 98, "utility": 70 }
-  },
-  {
-    "id": "kyousuke",
-    "rank": 10,
-    "name": "kyousuke",
-    "role": "Rifler",
-    "teamName": "Team Falcons",
-    "teamUrl": "teams/team-falcons.html",
-    "avatar": "images/player_images/kyousuke.jpeg",
-    "age": 18,
-    "rating": "1.23",
-    "stats": { "firepower": 90, "entrying": 84, "trading": 86, "opening": 82, "clutching": 79, "sniping": 15, "utility": 68 }
-  },
-
-  // --- Team Spirit ---
-  {
-    "id": "sh1ro",
-    "rank": 5,
-    "name": "sh1ro",
-    "role": "AWPer",
-    "teamName": "Team Spirit",
-    "teamUrl": "teams/team-spirit.html",
-    "avatar": "images/player_images/sh1ro.jpeg",
-    "age": 25,
-    "rating": "1.18",
-    "stats": { "firepower": 88, "entrying": 65, "trading": 92, "opening": 76, "clutching": 96, "sniping": 94, "utility": 80 }
-  },
-  {
-    "id": "magixx",
-    "rank": 29,
-    "name": "magixx",
-    "role": "Rifler / Anchor",
-    "teamName": "Team Spirit",
-    "teamUrl": "teams/team-spirit.html",
-    "avatar": "images/player_images/magixx.jpeg",
-    "age": 23,
-    "rating": "0.98",
-    "stats": { "firepower": 64, "entrying": 58, "trading": 75, "opening": 55, "clutching": 80, "sniping": 10, "utility": 86 }
-  },
-  {
-    "id": "tn1r",
-    "rank": 25,
-    "name": "tN1R",
-    "role": "Rifler",
-    "teamName": "Team Spirit",
-    "teamUrl": "teams/team-spirit.html",
-    "avatar": "images/player_images/tn1r.jpeg",
-    "age": 20,
-    "rating": "1.08",
-    "stats": { "firepower": 78, "entrying": 74, "trading": 78, "opening": 72, "clutching": 73, "sniping": 15, "utility": 70 }
-  },
-  {
-    "id": "zont1x",
-    "rank": 19,
-    "name": "zont1x",
-    "role": "Rifler / Lurker",
-    "teamName": "Team Spirit",
-    "teamUrl": "teams/team-spirit.html",
-    "avatar": "images/player_images/zont1x.jpeg",
-    "age": 20,
-    "rating": "1.09",
-    "stats": { "firepower": 80, "entrying": 68, "trading": 84, "opening": 70, "clutching": 85, "sniping": 10, "utility": 78 }
-  },
+  // --- Rank 1 - 5 ---
   {
     "id": "donk",
     "rank": 1,
@@ -122,47 +12,45 @@ const playersData = [
     "rating": "1.40",
     "stats": { "firepower": 99, "entrying": 98, "trading": 88, "opening": 97, "clutching": 80, "sniping": 20, "utility": 72 }
   },
-
-  // --- FURIA Esports ---
   {
-    "id": "fallen",
-    "rank": 33,
-    "name": "FalleN",
-    "role": "IGL / AWPer",
-    "teamName": "FURIA Esports",
-    "teamUrl": "teams/furia-esports.html",
-    "avatar": "images/player_images/fallen.jpeg",
-    "age": 35,
-    "rating": "0.96",
-    "stats": { "firepower": 62, "entrying": 52, "trading": 68, "opening": 65, "clutching": 78, "sniping": 80, "utility": 88 }
+    "id": "m0nesy",
+    "rank": 2,
+    "name": "m0NESY",
+    "role": "AWPer",
+    "teamName": "Team Falcons",
+    "teamUrl": "teams/team-falcons.html",
+    "avatar": "images/player_images/m0nesy.jpeg",
+    "age": 21,
+    "rating": "1.27",
+    "stats": { "firepower": 96, "entrying": 85, "trading": 89, "opening": 90, "clutching": 92, "sniping": 98, "utility": 70 }
   },
   {
-    "id": "yuurih",
-    "rank": 20,
-    "name": "yuurih",
-    "role": "Rifler / Lurker",
-    "teamName": "FURIA Esports",
-    "teamUrl": "teams/furia-esports.html",
-    "avatar": "images/player_images/yuurih.jpeg",
-    "age": 26,
-    "rating": "1.10",
-    "stats": { "firepower": 82, "entrying": 72, "trading": 86, "opening": 74, "clutching": 84, "sniping": 10, "utility": 76 }
+    "id": "kyousuke",
+    "rank": 3,
+    "name": "kyousuke",
+    "role": "Rifler",
+    "teamName": "Team Falcons",
+    "teamUrl": "teams/team-falcons.html",
+    "avatar": "images/player_images/kyousuke.jpeg",
+    "age": 18,
+    "rating": "1.23",
+    "stats": { "firepower": 90, "entrying": 84, "trading": 86, "opening": 82, "clutching": 79, "sniping": 15, "utility": 68 }
   },
   {
-    "id": "yekindar",
-    "rank": 21,
-    "name": "YEKINDAR",
-    "role": "Rifler / Entry Fragger",
-    "teamName": "FURIA Esports",
-    "teamUrl": "teams/furia-esports.html",
-    "avatar": "images/player_images/yekindar.jpeg",
-    "age": 26,
-    "rating": "1.05",
-    "stats": { "firepower": 81, "entrying": 90, "trading": 75, "opening": 88, "clutching": 66, "sniping": 10, "utility": 72 }
+    "id": "sh1ro",
+    "rank": 4,
+    "name": "sh1ro",
+    "role": "AWPer",
+    "teamName": "Team Spirit",
+    "teamUrl": "teams/team-spirit.html",
+    "avatar": "images/player_images/sh1ro.jpeg",
+    "age": 25,
+    "rating": "1.18",
+    "stats": { "firepower": 88, "entrying": 65, "trading": 92, "opening": 76, "clutching": 96, "sniping": 94, "utility": 80 }
   },
   {
     "id": "kscerato",
-    "rank": 7,
+    "rank": 5,
     "name": "KSCERATO",
     "role": "Rifler / Star Player",
     "teamName": "FURIA Esports",
@@ -172,9 +60,11 @@ const playersData = [
     "rating": "1.18",
     "stats": { "firepower": 90, "entrying": 78, "trading": 90, "opening": 80, "clutching": 89, "sniping": 10, "utility": 80 }
   },
+
+  // --- Rank 6 - 10 ---
   {
     "id": "molodoy",
-    "rank": 11,
+    "rank": 6,
     "name": "molodoy",
     "role": "Rifler / Entry Fragger",
     "teamName": "FURIA Esports",
@@ -184,11 +74,9 @@ const playersData = [
     "rating": "1.16",
     "stats": { "firepower": 88, "entrying": 87, "trading": 80, "opening": 85, "clutching": 72, "sniping": 15, "utility": 65 }
   },
-
-  // --- Aurora Gaming ---
   {
     "id": "xantares",
-    "rank": 9,
+    "rank": 7,
     "name": "XANTARES",
     "role": "Rifler / Star Player",
     "teamName": "Aurora Gaming",
@@ -199,58 +87,8 @@ const playersData = [
     "stats": { "firepower": 92, "entrying": 88, "trading": 85, "opening": 86, "clutching": 76, "sniping": 10, "utility": 70 }
   },
   {
-    "id": "woxic",
-    "rank": 24,
-    "name": "woxic",
-    "role": "AWPer",
-    "teamName": "Aurora Gaming",
-    "teamUrl": "teams/aurora-gaming.html",
-    "avatar": "images/player_images/woxic.jpeg",
-    "age": 27,
-    "rating": "1.08",
-    "stats": { "firepower": 80, "entrying": 68, "trading": 76, "opening": 75, "clutching": 80, "sniping": 88, "utility": 72 }
-  },
-  {
-    "id": "jimpphat",
-    "rank": 8,
-    "name": "Jimpphat",
-    "role": "Rifler / Anchor",
-    "teamName": "Aurora Gaming",
-    "teamUrl": "teams/aurora-gaming.html",
-    "avatar": "images/player_images/jimpphat.jpeg",
-    "age": 19,
-    "rating": "1.15",
-    "stats": { "firepower": 86, "entrying": 70, "trading": 88, "opening": 72, "clutching": 90, "sniping": 10, "utility": 82 }
-  },
-  {
-    "id": "kyxsan",
-    "rank": 31,
-    "name": "kyxsan",
-    "role": "IGL",
-    "teamName": "Aurora Gaming",
-    "teamUrl": "teams/aurora-gaming.html",
-    "avatar": "images/player_images/kyxsan.jpeg",
-    "age": 25,
-    "rating": "0.96",
-    "stats": { "firepower": 60, "entrying": 62, "trading": 65, "opening": 64, "clutching": 70, "sniping": 10, "utility": 85 }
-  },
-  {
-    "id": "wicadia",
-    "rank": 18,
-    "name": "Wicadia",
-    "role": "Rifler",
-    "teamName": "Aurora Gaming",
-    "teamUrl": "teams/aurora-gaming.html",
-    "avatar": "images/player_images/wicadia.jpeg",
-    "age": 21,
-    "rating": "1.10",
-    "stats": { "firepower": 83, "entrying": 82, "trading": 80, "opening": 81, "clutching": 72, "sniping": 10, "utility": 68 }
-  },
-
-  // --- FaZe Clan ---
-  {
     "id": "frozen",
-    "rank": 12,
+    "rank": 8,
     "name": "frozen",
     "role": "Rifler / Support",
     "teamName": "FaZe Clan",
@@ -261,8 +99,46 @@ const playersData = [
     "stats": { "firepower": 87, "entrying": 75, "trading": 88, "opening": 78, "clutching": 86, "sniping": 15, "utility": 82 }
   },
   {
+    "id": "heavygod",
+    "rank": 9,
+    "name": "HeavyGod",
+    "role": "Rifler / Anchor",
+    "teamName": "G2 Esports",
+    "teamUrl": "teams/g2-esports.html",
+    "avatar": "images/player_images/heavygod.jpeg",
+    "age": 23,
+    "rating": "1.16",
+    "stats": { "firepower": 87, "entrying": 75, "trading": 86, "opening": 76, "clutching": 85, "sniping": 10, "utility": 80 }
+  },
+  {
+    "id": "niko",
+    "rank": 10,
+    "name": "NiKo",
+    "role": "Rifler / Entry Fragger",
+    "teamName": "Team Falcons",
+    "teamUrl": "teams/team-falcons.html",
+    "avatar": "images/player_images/niko.jpeg",
+    "age": 29,
+    "rating": "1.15",
+    "stats": { "firepower": 91, "entrying": 92, "trading": 85, "opening": 90, "clutching": 82, "sniping": 10, "utility": 75 }
+  },
+
+  // --- Rank 11 - 15 ---
+  {
+    "id": "jimpphat",
+    "rank": 11,
+    "name": "Jimpphat",
+    "role": "Rifler / Anchor",
+    "teamName": "Aurora Gaming",
+    "teamUrl": "teams/aurora-gaming.html",
+    "avatar": "images/player_images/jimpphat.jpeg",
+    "age": 19,
+    "rating": "1.15",
+    "stats": { "firepower": 86, "entrying": 70, "trading": 88, "opening": 72, "clutching": 90, "sniping": 10, "utility": 82 }
+  },
+  {
     "id": "twistzz",
-    "rank": 14,
+    "rank": 12,
     "name": "Twistzz",
     "role": "IGL / Rifler",
     "teamName": "FaZe Clan",
@@ -271,56 +147,6 @@ const playersData = [
     "age": 26,
     "rating": "1.15",
     "stats": { "firepower": 86, "entrying": 76, "trading": 87, "opening": 78, "clutching": 85, "sniping": 10, "utility": 88 }
-  },
-  {
-    "id": "neityu",
-    "rank": 28,
-    "name": "Neityu",
-    "role": "Rifler",
-    "teamName": "FaZe Clan",
-    "teamUrl": "teams/faze-clan.html",
-    "avatar": "images/player_images/neityu.jpeg",
-    "age": 21,
-    "rating": "1.03",
-    "stats": { "firepower": 73, "entrying": 70, "trading": 75, "opening": 68, "clutching": 72, "sniping": 10, "utility": 74 }
-  },
-  {
-    "id": "jcobbb",
-    "rank": 30,
-    "name": "jcobbb",
-    "role": "Rifler",
-    "teamName": "FaZe Clan",
-    "teamUrl": "teams/faze-clan.html",
-    "avatar": "images/player_images/jcobbb.jpeg",
-    "age": 20,
-    "rating": "1.01",
-    "stats": { "firepower": 70, "entrying": 68, "trading": 72, "opening": 66, "clutching": 71, "sniping": 10, "utility": 70 }
-  },
-  {
-    "id": "jboen",
-    "rank": 32,
-    "name": "JBOEN",
-    "role": "AWPer",
-    "teamName": "FaZe Clan",
-    "teamUrl": "teams/faze-clan.html",
-    "avatar": "images/player_images/jboen.jpeg",
-    "age": 21,
-    "rating": "1.00",
-    "stats": { "firepower": 72, "entrying": 58, "trading": 70, "opening": 68, "clutching": 75, "sniping": 82, "utility": 68 }
-  },
-
-  // --- G2 Esports ---
-  {
-    "id": "hunter",
-    "rank": 16,
-    "name": "huNter-",
-    "role": "Rifler / Lurker",
-    "teamName": "G2 Esports",
-    "teamUrl": "teams/g2-esports.html",
-    "avatar": "images/player_images/hunter.jpeg",
-    "age": 30,
-    "rating": "1.11",
-    "stats": { "firepower": 83, "entrying": 76, "trading": 84, "opening": 77, "clutching": 82, "sniping": 10, "utility": 78 }
   },
   {
     "id": "nertz",
@@ -336,7 +162,7 @@ const playersData = [
   },
   {
     "id": "r1nkle",
-    "rank": 17,
+    "rank": 14,
     "name": "r1nkle",
     "role": "AWPer",
     "teamName": "G2 Esports",
@@ -347,20 +173,84 @@ const playersData = [
     "stats": { "firepower": 84, "entrying": 65, "trading": 80, "opening": 78, "clutching": 83, "sniping": 89, "utility": 72 }
   },
   {
-    "id": "heavygod",
+    "id": "hunter",
     "rank": 15,
-    "name": "HeavyGod",
-    "role": "Rifler / Anchor",
+    "name": "huNter-",
+    "role": "Rifler / Lurker",
     "teamName": "G2 Esports",
     "teamUrl": "teams/g2-esports.html",
-    "avatar": "images/player_images/heavygod.jpeg",
-    "age": 23,
-    "rating": "1.16",
-    "stats": { "firepower": 87, "entrying": 75, "trading": 86, "opening": 76, "clutching": 85, "sniping": 10, "utility": 80 }
+    "avatar": "images/player_images/hunter.jpeg",
+    "age": 30,
+    "rating": "1.11",
+    "stats": { "firepower": 83, "entrying": 76, "trading": 84, "opening": 77, "clutching": 82, "sniping": 10, "utility": 78 }
+  },
+
+  // --- Rank 16 - 20 ---
+  {
+    "id": "yuurih",
+    "rank": 16,
+    "name": "yuurih",
+    "role": "Rifler / Lurker",
+    "teamName": "FURIA Esports",
+    "teamUrl": "teams/furia-esports.html",
+    "avatar": "images/player_images/yuurih.jpeg",
+    "age": 26,
+    "rating": "1.10",
+    "stats": { "firepower": 82, "entrying": 72, "trading": 86, "opening": 74, "clutching": 84, "sniping": 10, "utility": 76 }
   },
   {
+    "id": "wicadia",
+    "rank": 17,
+    "name": "Wicadia",
+    "role": "Rifler",
+    "teamName": "Aurora Gaming",
+    "teamUrl": "teams/aurora-gaming.html",
+    "avatar": "images/player_images/wicadia.jpeg",
+    "age": 21,
+    "rating": "1.10",
+    "stats": { "firepower": 83, "entrying": 82, "trading": 80, "opening": 81, "clutching": 72, "sniping": 10, "utility": 68 }
+  },
+  {
+    "id": "zont1x",
+    "rank": 18,
+    "name": "zont1x",
+    "role": "Rifler / Lurker",
+    "teamName": "Team Spirit",
+    "teamUrl": "teams/team-spirit.html",
+    "avatar": "images/player_images/zont1x.jpeg",
+    "age": 20,
+    "rating": "1.09",
+    "stats": { "firepower": 80, "entrying": 68, "trading": 84, "opening": 70, "clutching": 85, "sniping": 10, "utility": 78 }
+  },
+  {
+    "id": "tn1r",
+    "rank": 19,
+    "name": "tN1R",
+    "role": "Rifler",
+    "teamName": "Team Spirit",
+    "teamUrl": "teams/team-spirit.html",
+    "avatar": "images/player_images/tn1r.jpeg",
+    "age": 20,
+    "rating": "1.08",
+    "stats": { "firepower": 78, "entrying": 74, "trading": 78, "opening": 72, "clutching": 73, "sniping": 15, "utility": 70 }
+  },
+  {
+    "id": "woxic",
+    "rank": 20,
+    "name": "woxic",
+    "role": "AWPer",
+    "teamName": "Aurora Gaming",
+    "teamUrl": "teams/aurora-gaming.html",
+    "avatar": "images/player_images/woxic.jpeg",
+    "age": 27,
+    "rating": "1.08",
+    "stats": { "firepower": 80, "entrying": 68, "trading": 76, "opening": 75, "clutching": 80, "sniping": 88, "utility": 72 }
+  },
+
+  // --- Rank 21 - 25 ---
+  {
     "id": "matys",
-    "rank": 23,
+    "rank": 21,
     "name": "MATYS",
     "role": "Rifler",
     "teamName": "G2 Esports",
@@ -369,44 +259,6 @@ const playersData = [
     "age": 23,
     "rating": "1.07",
     "stats": { "firepower": 78, "entrying": 76, "trading": 77, "opening": 75, "clutching": 72, "sniping": 10, "utility": 70 }
-  },
-
-  // --- Astralis ---
-  {
-    "id": "hooxi",
-    "rank": 34,
-    "name": "HooXi",
-    "role": "IGL",
-    "teamName": "Astralis",
-    "teamUrl": "teams/astralis.html",
-    "avatar": "images/player_images/hooxi.jpeg",
-    "age": 30,
-    "rating": "0.91",
-    "stats": { "firepower": 54, "entrying": 60, "trading": 62, "opening": 60, "clutching": 68, "sniping": 10, "utility": 90 }
-  },
-  {
-    "id": "phzy",
-    "rank": 26,
-    "name": "phzy",
-    "role": "AWPer",
-    "teamName": "Astralis",
-    "teamUrl": "teams/astralis.html",
-    "avatar": "images/player_images/phzy.jpeg",
-    "age": 23,
-    "rating": "1.06",
-    "stats": { "firepower": 77, "entrying": 60, "trading": 74, "opening": 72, "clutching": 80, "sniping": 86, "utility": 70 }
-  },
-  {
-    "id": "jabbi",
-    "rank": 27,
-    "name": "jabbi",
-    "role": "Rifler / Lurker",
-    "teamName": "Astralis",
-    "teamUrl": "teams/astralis.html",
-    "avatar": "images/player_images/jabbi.jpeg",
-    "age": 23,
-    "rating": "1.05",
-    "stats": { "firepower": 78, "entrying": 72, "trading": 81, "opening": 70, "clutching": 81, "sniping": 10, "utility": 78 }
   },
   {
     "id": "staehr",
@@ -421,8 +273,94 @@ const playersData = [
     "stats": { "firepower": 79, "entrying": 70, "trading": 78, "opening": 72, "clutching": 76, "sniping": 10, "utility": 80 }
   },
   {
+    "id": "teses",
+    "rank": 23,
+    "name": "TeSeS",
+    "role": "Rifler / Support",
+    "teamName": "Team Falcons",
+    "teamUrl": "teams/team-falcons.html",
+    "avatar": "images/player_images/teses.jpeg",
+    "age": 25,
+    "rating": "1.06",
+    "stats": { "firepower": 76, "entrying": 72, "trading": 80, "opening": 70, "clutching": 74, "sniping": 10, "utility": 84 }
+  },
+  {
+    "id": "phzy",
+    "rank": 24,
+    "name": "phzy",
+    "role": "AWPer",
+    "teamName": "Astralis",
+    "teamUrl": "teams/astralis.html",
+    "avatar": "images/player_images/phzy.jpeg",
+    "age": 23,
+    "rating": "1.06",
+    "stats": { "firepower": 77, "entrying": 60, "trading": 74, "opening": 72, "clutching": 80, "sniping": 86, "utility": 70 }
+  },
+  {
+    "id": "yekindar",
+    "rank": 25,
+    "name": "YEKINDAR",
+    "role": "Rifler / Entry Fragger",
+    "teamName": "FURIA Esports",
+    "teamUrl": "teams/furia-esports.html",
+    "avatar": "images/player_images/yekindar.jpeg",
+    "age": 26,
+    "rating": "1.05",
+    "stats": { "firepower": 81, "entrying": 90, "trading": 75, "opening": 88, "clutching": 66, "sniping": 10, "utility": 72 }
+  },
+
+  // --- Rank 26 - 30 ---
+  {
+    "id": "jabbi",
+    "rank": 26,
+    "name": "jabbi",
+    "role": "Rifler / Lurker",
+    "teamName": "Astralis",
+    "teamUrl": "teams/astralis.html",
+    "avatar": "images/player_images/jabbi.jpeg",
+    "age": 23,
+    "rating": "1.05",
+    "stats": { "firepower": 78, "entrying": 72, "trading": 81, "opening": 70, "clutching": 81, "sniping": 10, "utility": 78 }
+  },
+  {
+    "id": "neityu",
+    "rank": 27,
+    "name": "Neityu",
+    "role": "Rifler",
+    "teamName": "FaZe Clan",
+    "teamUrl": "teams/faze-clan.html",
+    "avatar": "images/player_images/neityu.jpeg",
+    "age": 21,
+    "rating": "1.03",
+    "stats": { "firepower": 73, "entrying": 70, "trading": 75, "opening": 68, "clutching": 72, "sniping": 10, "utility": 74 }
+  },
+  {
+    "id": "jcobbb",
+    "rank": 28,
+    "name": "jcobbb",
+    "role": "Rifler",
+    "teamName": "FaZe Clan",
+    "teamUrl": "teams/faze-clan.html",
+    "avatar": "images/player_images/jcobbb.jpeg",
+    "age": 20,
+    "rating": "1.01",
+    "stats": { "firepower": 70, "entrying": 68, "trading": 72, "opening": 66, "clutching": 71, "sniping": 10, "utility": 70 }
+  },
+  {
+    "id": "jboen",
+    "rank": 29,
+    "name": "JBOEN",
+    "role": "AWPer",
+    "teamName": "FaZe Clan",
+    "teamUrl": "teams/faze-clan.html",
+    "avatar": "images/player_images/jboen.jpeg",
+    "age": 21,
+    "rating": "1.00",
+    "stats": { "firepower": 72, "entrying": 58, "trading": 70, "opening": 68, "clutching": 75, "sniping": 82, "utility": 68 }
+  },
+  {
     "id": "ryu",
-    "rank": 36,
+    "rank": 30,
     "name": "ryu",
     "role": "Rifler",
     "teamName": "Astralis",
@@ -431,5 +369,67 @@ const playersData = [
     "age": 21,
     "rating": "0.99",
     "stats": { "firepower": 69, "entrying": 66, "trading": 70, "opening": 65, "clutching": 68, "sniping": 10, "utility": 72 }
+  },
+
+  // --- Rank 31 - 35 ---
+  {
+    "id": "magixx",
+    "rank": 31,
+    "name": "magixx",
+    "role": "Rifler / Anchor",
+    "teamName": "Team Spirit",
+    "teamUrl": "teams/team-spirit.html",
+    "avatar": "images/player_images/magixx.jpeg",
+    "age": 23,
+    "rating": "0.98",
+    "stats": { "firepower": 64, "entrying": 58, "trading": 75, "opening": 55, "clutching": 80, "sniping": 10, "utility": 86 }
+  },
+  {
+    "id": "fallen",
+    "rank": 32,
+    "name": "FalleN",
+    "role": "IGL / AWPer",
+    "teamName": "FURIA Esports",
+    "teamUrl": "teams/furia-esports.html",
+    "avatar": "images/player_images/fallen.jpeg",
+    "age": 35,
+    "rating": "0.96",
+    "stats": { "firepower": 62, "entrying": 52, "trading": 68, "opening": 65, "clutching": 78, "sniping": 80, "utility": 88 }
+  },
+  {
+    "id": "kyxsan",
+    "rank": 33,
+    "name": "kyxsan",
+    "role": "IGL",
+    "teamName": "Aurora Gaming",
+    "teamUrl": "teams/aurora-gaming.html",
+    "avatar": "images/player_images/kyxsan.jpeg",
+    "age": 25,
+    "rating": "0.96",
+    "stats": { "firepower": 60, "entrying": 62, "trading": 65, "opening": 64, "clutching": 70, "sniping": 10, "utility": 85 }
+  },
+  {
+    "id": "hooxi",
+    "rank": 34,
+    "name": "HooXi",
+    "role": "IGL",
+    "teamName": "Astralis",
+    "teamUrl": "teams/astralis.html",
+    "avatar": "images/player_images/hooxi.jpeg",
+    "age": 30,
+    "rating": "0.91",
+    "stats": { "firepower": 54, "entrying": 60, "trading": 62, "opening": 60, "clutching": 68, "sniping": 10, "utility": 90 }
+  },
+  {
+    "id": "karrigan",
+    "rank": 35,
+    "name": "karrigan",
+    "role": "IGL",
+    "teamName": "Team Falcons",
+    "teamUrl": "teams/team-falcons.html",
+    "avatar": "images/player_images/karrigan.jpeg",
+    "age": 36,
+    "rating": "0.89",
+    "stats": { "firepower": 52, "entrying": 65, "trading": 60, "opening": 68, "clutching": 58, "sniping": 15, "utility": 92 }
   }
 ];
