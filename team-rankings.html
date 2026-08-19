@@ -26,7 +26,7 @@
     <section class="page-section">
       <div class="section-content">
         
-        <!-- Search Bar Section -->
+        <!-- Search, Filter & Sort Controls -->
         <div class="search-container">
           <input 
             type="text" 
@@ -34,6 +34,15 @@
             class="search-input" 
             placeholder="Search team by name..."
           >
+          
+          <!-- Sort Select Dropdown -->
+          <select id="team-sort-select" class="search-select">
+            <option value="rank-asc">Rank: High to Low (#1 → Bottom)</option>
+            <option value="rank-desc">Rank: Low to High (Bottom → #1)</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+          </select>
+
           <button id="clear-team-search" class="btn-clear" style="display: none;">Clear</button>
         </div>
 
@@ -51,13 +60,37 @@
   <script>
     const container = document.getElementById('team-list');
     const searchInput = document.getElementById('team-search');
+    const sortSelect = document.getElementById('team-sort-select');
     const clearBtn = document.getElementById('clear-team-search');
 
-    teamsData.sort((a, b) => a.rank - b.rank);
+    // Helper function to handle sorting on teams array
+    function sortTeamData(data, sortKey) {
+      const [property, direction] = sortKey.split('-');
 
-    function renderTeams(filterText = '') {
+      return [...data].sort((a, b) => {
+        let valA = a[property];
+        let valB = b[property];
+
+        if (property === 'rank') {
+          valA = parseFloat(valA);
+          valB = parseFloat(valB);
+        } else if (typeof valA === 'string') {
+          valA = valA.toLowerCase();
+          valB = valB.toLowerCase();
+        }
+
+        if (direction === 'asc') {
+          return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+          return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+      });
+    }
+
+    function renderTeams(filterText = '', sortKey = 'rank-asc') {
       container.innerHTML = '';
 
+      // 1. Filter dataset
       const filtered = teamsData.filter(team => 
         team.name.toLowerCase().includes(filterText.toLowerCase())
       );
@@ -67,7 +100,11 @@
         return;
       }
 
-      filtered.forEach(team => {
+      // 2. Sort dataset
+      const sorted = sortTeamData(filtered, sortKey);
+
+      // 3. Render DOM cards
+      sorted.forEach(team => {
         const card = document.createElement('div');
         card.className = 'team-card';
 
@@ -87,35 +124,49 @@
       });
     }
 
-    // Load filter preference from Cookie on page load
-    const savedFilter = getCookie('teamSearchQuery');
-    if (savedFilter) {
-      searchInput.value = savedFilter;
-      clearBtn.style.display = 'inline-block';
-      renderTeams(savedFilter);
-    } else {
-      renderTeams();
+    function updateFiltersAndCookies() {
+      const query = searchInput.value.trim();
+      const sortQuery = sortSelect.value;
+
+      // Save preferences in cookies
+      setCookie('teamSearchQuery', query, 30);
+      setCookie('teamSortQuery', sortQuery, 30);
+
+      // Show/hide clear button
+      clearBtn.style.display = (query || sortQuery !== 'rank-asc') ? 'inline-block' : 'none';
+
+      renderTeams(query, sortQuery);
     }
 
-    // Save filter to Cookie on input
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      setCookie('teamSearchQuery', query, 30);
-      clearBtn.style.display = query ? 'inline-block' : 'none';
-      renderTeams(query);
-    });
+    // Load filter and sort preferences from Cookies on page load
+    const savedFilter = getCookie('teamSearchQuery');
+    const savedSort = getCookie('teamSortQuery');
 
-    // Clear search filter
+    if (savedFilter) searchInput.value = savedFilter;
+    if (savedSort) sortSelect.value = savedSort;
+
+    if (savedFilter || (savedSort && savedSort !== 'rank-asc')) {
+      clearBtn.style.display = 'inline-block';
+    }
+
+    renderTeams(searchInput.value.trim(), sortSelect.value);
+
+    // Event Listeners
+    searchInput.addEventListener('input', updateFiltersAndCookies);
+    sortSelect.addEventListener('change', updateFiltersAndCookies);
+
+    // Clear search filter & reset sort
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
+      sortSelect.value = 'rank-asc';
       setCookie('teamSearchQuery', '', -1);
+      setCookie('teamSortQuery', '', -1);
       clearBtn.style.display = 'none';
       renderTeams();
     });
   </script>
   
   <!-- Global Scripts -->
-  <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="layout.js"></script>
   <script src="nav.js"></script>

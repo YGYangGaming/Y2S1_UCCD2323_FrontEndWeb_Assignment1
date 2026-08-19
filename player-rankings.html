@@ -26,7 +26,7 @@
     <section class="page-section">
       <div class="section-content">
         
-        <!-- Search & Filter Controls -->
+        <!-- Search, Filter & Sort Controls -->
         <div class="search-container">
           <input 
             type="text" 
@@ -45,6 +45,18 @@
             <option value="Support">Support</option>
             <option value="Lurker">Lurker</option>
             <option value="Anchor">Anchor</option>
+          </select>
+
+          <!-- Sort Select Dropdown -->
+          <select id="sort-select" class="search-select">
+            <option value="rank-asc">Rank: High to Low (#1 → #35)</option>
+            <option value="rank-desc">Rank: Low to High (#35 → #1)</option>
+            <option value="rating-desc">Rating: Highest First</option>
+            <option value="rating-asc">Rating: Lowest First</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+            <option value="age-asc">Age: Youngest First</option>
+            <option value="age-desc">Age: Oldest First</option>
           </select>
 
           <button id="clear-search" class="btn-clear" style="display: none;">Clear</button>
@@ -66,20 +78,43 @@
     const container = document.getElementById('player-list');
     const searchInput = document.getElementById('player-search');
     const roleSelect = document.getElementById('role-select');
+    const sortSelect = document.getElementById('sort-select');
     const clearBtn = document.getElementById('clear-search');
 
-    // Sort players by rank ascending (#1, #2, #3...)
-    playersData.sort((a, b) => a.rank - b.rank);
+    // Helper function to handle sorting on an array
+    function sortPlayerData(data, sortKey) {
+      const [property, direction] = sortKey.split('-');
+      
+      return [...data].sort((a, b) => {
+        let valA = a[property];
+        let valB = b[property];
 
-    function renderPlayers(textQuery = '', roleQuery = '') {
+        // Parse numerical values if sorting by rank, rating, or age
+        if (property === 'rank' || property === 'rating' || property === 'age') {
+          valA = parseFloat(valA);
+          valB = parseFloat(valB);
+        } else if (typeof valA === 'string') {
+          valA = valA.toLowerCase();
+          valB = valB.toLowerCase();
+        }
+
+        if (direction === 'asc') {
+          return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+          return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+      });
+    }
+
+    function renderPlayers(textQuery = '', roleQuery = '', sortQuery = 'rank-asc') {
       container.innerHTML = '';
 
+      // 1. Filter dataset
       const filtered = playersData.filter(player => {
         const textMatch = 
           player.name.toLowerCase().includes(textQuery.toLowerCase()) ||
           player.teamName.toLowerCase().includes(textQuery.toLowerCase());
 
-        // Case-insensitive inclusion search for roles (e.g. "IGL" matches "Awper / IGL")
         const roleMatch = roleQuery === '' || 
           player.role.toLowerCase().includes(roleQuery.toLowerCase());
 
@@ -91,7 +126,11 @@
         return;
       }
 
-      filtered.forEach(player => {
+      // 2. Sort filtered dataset
+      const sorted = sortPlayerData(filtered, sortQuery);
+
+      // 3. Render DOM cards
+      sorted.forEach(player => {
         const card = document.createElement('div');
         card.className = 'player-card';
 
@@ -119,47 +158,53 @@
     function updateFiltersAndCookies() {
       const textQuery = searchInput.value.trim();
       const roleQuery = roleSelect.value;
+      const sortQuery = sortSelect.value;
 
       // Persist preferences in cookies
       setCookie('playerSearchQuery', textQuery, 30);
       setCookie('playerRoleQuery', roleQuery, 30);
+      setCookie('playerSortQuery', sortQuery, 30);
 
       // Show/hide clear button
-      clearBtn.style.display = (textQuery || roleQuery) ? 'inline-block' : 'none';
+      clearBtn.style.display = (textQuery || roleQuery || sortQuery !== 'rank-asc') ? 'inline-block' : 'none';
 
-      renderPlayers(textQuery, roleQuery);
+      renderPlayers(textQuery, roleQuery, sortQuery);
     }
 
-    // Load filter preferences from cookies on page load
+    // Load filter and sort preferences from cookies on page load
     const savedText = getCookie('playerSearchQuery');
     const savedRole = getCookie('playerRoleQuery');
+    const savedSort = getCookie('playerSortQuery');
 
     if (savedText) searchInput.value = savedText;
     if (savedRole) roleSelect.value = savedRole;
+    if (savedSort) sortSelect.value = savedSort;
 
-    if (savedText || savedRole) {
+    if (savedText || savedRole || (savedSort && savedSort !== 'rank-asc')) {
       clearBtn.style.display = 'inline-block';
     }
 
-    renderPlayers(searchInput.value.trim(), roleSelect.value);
+    renderPlayers(searchInput.value.trim(), roleSelect.value, sortSelect.value);
 
     // Event Listeners
     searchInput.addEventListener('input', updateFiltersAndCookies);
     roleSelect.addEventListener('change', updateFiltersAndCookies);
+    sortSelect.addEventListener('change', updateFiltersAndCookies);
 
-    // Clear filters
+    // Clear filters and reset sort
     clearBtn.addEventListener('click', () => {
       searchInput.value = '';
       roleSelect.value = '';
+      sortSelect.value = 'rank-asc';
       setCookie('playerSearchQuery', '', -1);
       setCookie('playerRoleQuery', '', -1);
+      setCookie('playerSortQuery', '', -1);
       clearBtn.style.display = 'none';
       renderPlayers();
     });
   </script>
   
   <!-- Global Scripts -->
-  <!-- Load jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="layout.js"></script>
   <script src="nav.js"></script>
