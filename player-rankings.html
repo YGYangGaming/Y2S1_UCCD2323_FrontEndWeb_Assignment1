@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Reusable Header & Navigation Bar -->
+  <!-- Header -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="brand-logo">
@@ -26,9 +26,7 @@
     </div>
   </header>
 
-  <!-- Main Content Area -->
   <main>
-    <!-- Page Banner -->
     <section class="banner">
       <div class="section-content">
         <span class="sub-heading">CS2 Roster Leaderboard</span>
@@ -37,10 +35,20 @@
       </div>
     </section>
 
-    <!-- Player List Section -->
     <section class="page-section">
       <div class="section-content">
         
+        <!-- Search Bar Section -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="player-search" 
+            class="search-input" 
+            placeholder="Search player by name or role..."
+          >
+          <button id="clear-search" class="btn-clear" style="display: none;">Clear</button>
+        </div>
+
         <!-- Target Container for Dynamic Cards -->
         <div id="player-list" class="player-list"></div>
 
@@ -48,47 +56,84 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
   </footer>
 
-  <!-- Include Player Data and Generation Script -->
+  <!-- Scripts -->
+  <script src="cookies.js"></script>
   <script src="players.js"></script>
   <script>
     const container = document.getElementById('player-list');
+    const searchInput = document.getElementById('player-search');
+    const clearBtn = document.getElementById('clear-search');
 
     // Sort players by rank ascending (#1, #2, #3...)
     playersData.sort((a, b) => a.rank - b.rank);
 
-    // Generate HTML card for each player object
-    playersData.forEach(player => {
-      const card = document.createElement('div');
-      card.className = 'player-card';
+    function renderPlayers(filterText = '') {
+      container.innerHTML = '';
+      
+      const filtered = playersData.filter(player => 
+        player.name.toLowerCase().includes(filterText.toLowerCase()) ||
+        player.role.toLowerCase().includes(filterText.toLowerCase()) ||
+        player.teamName.toLowerCase().includes(filterText.toLowerCase())
+      );
 
-      card.innerHTML = `
-        <div class="card-rank">#${player.rank}</div>
-        
-        <div class="card-avatar">
-          <img src="${player.avatar}" alt="${player.name} Avatar">
-        </div>
+      if (filtered.length === 0) {
+        container.innerHTML = `<p style="color: #a0a0b0; text-align: center; margin-top: 2rem;">No players found matching "${filterText}"</p>`;
+        return;
+      }
 
-        <div class="card-details">
-          <a href="player.html?id=${player.id}" class="player-name">${player.name}</a>
-          <span class="player-role">${player.role}</span>
-        </div>
+      filtered.forEach(player => {
+        const card = document.createElement('div');
+        card.className = 'player-card';
 
-        <div class="card-team">
-          <span class="team-label">Team</span>
-          <a href="${player.teamUrl}" class="team-name">${player.teamName}</a>
-        </div>
+        card.innerHTML = `
+          <div class="card-rank">#${player.rank}</div>
+          <div class="card-avatar">
+            <img src="${player.avatar}" alt="${player.name} Avatar">
+          </div>
+          <div class="card-details">
+            <a href="player.html?id=${player.id}" class="player-name">${player.name}</a>
+            <span class="player-role">${player.role}</span>
+          </div>
+          <div class="card-team">
+            <span class="team-label">Team</span>
+            <a href="${player.teamUrl}" class="team-name">${player.teamName}</a>
+          </div>
+          <div class="card-action">
+            <a href="player.html?id=${player.id}" class="btn-sm">View Profile</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
 
-        <div class="card-action">
-          <a href="player.html?id=${player.id}" class="btn-sm">View Profile</a>
-        </div>
-      `;
+    // Load filter preference from Cookie on page load
+    const savedFilter = getCookie('playerSearchQuery');
+    if (savedFilter) {
+      searchInput.value = savedFilter;
+      clearBtn.style.display = 'inline-block';
+      renderPlayers(savedFilter);
+    } else {
+      renderPlayers();
+    }
 
-      container.appendChild(card);
+    // Save filter to Cookie on input
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      setCookie('playerSearchQuery', query, 30); // Save cookie for 30 days
+      clearBtn.style.display = query ? 'inline-block' : 'none';
+      renderPlayers(query);
+    });
+
+    // Clear search filter
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      setCookie('playerSearchQuery', '', -1); // Delete cookie
+      clearBtn.style.display = 'none';
+      renderPlayers();
     });
   </script>
 </body>

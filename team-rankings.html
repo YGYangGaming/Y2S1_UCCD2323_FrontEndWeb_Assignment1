@@ -37,7 +37,20 @@
 
     <section class="page-section">
       <div class="section-content">
+        
+        <!-- Search Bar Section -->
+        <div class="search-container">
+          <input 
+            type="text" 
+            id="team-search" 
+            class="search-input" 
+            placeholder="Search team by name..."
+          >
+          <button id="clear-team-search" class="btn-clear" style="display: none;">Clear</button>
+        </div>
+
         <div id="team-list" class="team-list"></div>
+
       </div>
     </section>
   </main>
@@ -46,28 +59,72 @@
     <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="cookies.js"></script>
   <script src="teams.js"></script>
   <script>
     const container = document.getElementById('team-list');
+    const searchInput = document.getElementById('team-search');
+    const clearBtn = document.getElementById('clear-team-search');
+
     teamsData.sort((a, b) => a.rank - b.rank);
 
-    teamsData.forEach(team => {
-      const card = document.createElement('div');
-      card.className = 'team-card';
+    function renderTeams(filterText = '') {
+      container.innerHTML = '';
 
-      card.innerHTML = `
-        <div class="card-rank">#${team.rank}</div>
-        <div class="card-avatar">
-          <img src="${team.logo}" alt="${team.name} Logo">
-        </div>
-        <div class="card-details">
-          <a href="team.html?id=${team.id}" class="team-card-title">${team.name}</a>
-        </div>
-        <div class="card-action">
-          <a href="team.html?id=${team.id}" class="btn-sm">View Team</a>
-        </div>
-      `;
-      container.appendChild(card);
+      const filtered = teamsData.filter(team => 
+        team.name.toLowerCase().includes(filterText.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<p style="color: #a0a0b0; text-align: center; margin-top: 2rem;">No teams found matching "${filterText}"</p>`;
+        return;
+      }
+
+      filtered.forEach(team => {
+        const card = document.createElement('div');
+        card.className = 'team-card';
+
+        card.innerHTML = `
+          <div class="card-rank">#${team.rank}</div>
+          <div class="card-avatar">
+            <img src="${team.logo}" alt="${team.name} Logo">
+          </div>
+          <div class="card-details">
+            <a href="team.html?id=${team.id}" class="team-card-title">${team.name}</a>
+          </div>
+          <div class="card-action">
+            <a href="team.html?id=${team.id}" class="btn-sm">View Team</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Load filter preference from Cookie on page load
+    const savedFilter = getCookie('teamSearchQuery');
+    if (savedFilter) {
+      searchInput.value = savedFilter;
+      clearBtn.style.display = 'inline-block';
+      renderTeams(savedFilter);
+    } else {
+      renderTeams();
+    }
+
+    // Save filter to Cookie on input
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      setCookie('teamSearchQuery', query, 30);
+      clearBtn.style.display = query ? 'inline-block' : 'none';
+      renderTeams(query);
+    });
+
+    // Clear search filter
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      setCookie('teamSearchQuery', '', -1);
+      clearBtn.style.display = 'none';
+      renderTeams();
     });
   </script>
 </body>
