@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Rankings - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html">Player Rankings</a></li>
+          <li><a href="team-rankings.html" class="active">Team Rankings</a></li>
+          <li><a href="upcoming-events.html">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="banner">
+      <div class="section-content">
+        <span class="sub-heading">CS2 Club Rosters</span>
+        <h2>Team Rankings</h2>
+        <p>Official Counter-Strike 2 teams competing under the Apocalyptia banner.</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="section-content">
+        <div id="team-list" class="team-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <script src="teams.js"></script>
+  <script>
+    const container = document.getElementById('team-list');
+    teamsData.sort((a, b) => a.rank - b.rank);
+
+    teamsData.forEach(team => {
+      const card = document.createElement('div');
+      card.className = 'team-card';
+
+      card.innerHTML = `
+        <div class="card-rank">#${team.rank}</div>
+        <div class="card-avatar">
+          <img src="${team.logo}" alt="${team.name} Logo">
+        </div>
+        <div class="card-details">
+          <a href="team.html?id=${team.id}" class="team-card-title">${team.name}</a>
+        </div>
+        <div class="card-action">
+          <a href="team.html?id=${team.id}" class="btn-sm">View Team</a>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

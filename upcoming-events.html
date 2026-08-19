@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upcoming Events - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html">Player Rankings</a></li>
+          <li><a href="team-rankings.html">Team Rankings</a></li>
+          <li><a href="upcoming-events.html" class="active">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Banner -->
+    <section class="banner">
+      <div class="section-content">
+        <span class="sub-heading">Schedule & Tournaments</span>
+        <h2>Upcoming Events</h2>
+        <p>Stay up to date with community game nights, LAN tournaments, and varsity qualifiers.</p>
+      </div>
+    </section>
+
+    <!-- Events Grid Section -->
+    <section class="page-section">
+      <div class="section-content">
+        <div id="events-grid" class="events-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <script src="events.js"></script>
+  <script>
+    const container = document.getElementById('events-grid');
+
+    eventsData.forEach(event => {
+      const card = document.createElement('a');
+      card.className = 'event-card';
+      card.href = `event.html?id=${event.id}`;
+
+      card.innerHTML = `
+        <div class="event-image-wrapper">
+          <img src="${event.banner}" alt="${event.title}" class="event-image">
+          <div class="date-badge">
+            <span class="badge-month">${event.month}</span>
+            <span class="badge-day">${event.day}</span>
+          </div>
+        </div>
+        <div class="event-content">
+          <h3 class="event-title">${event.title}</h3>
+          <div class="event-meta">
+            <span>🕒 ${event.time}</span>
+          </div>
+          <p class="event-desc">${event.description}</p>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>

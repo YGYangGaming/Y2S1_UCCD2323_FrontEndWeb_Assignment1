@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Team Profile - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html">Player Rankings</a></li>
+          <li><a href="team-rankings.html" class="active">Team Rankings</a></li>
+          <li><a href="upcoming-events.html">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Team Banner Section -->
+    <section class="player-banner-section">
+      <div class="player-banner-container">
+        
+        <!-- Left Section (~30%): Picture & Name -->
+        <div class="player-profile-left">
+          <div class="profile-avatar">
+            <img id="team-logo" src="" alt="Team Logo">
+          </div>
+          <h1 id="team-name" class="profile-name">Loading...</h1>
+        </div>
+
+        <!-- Right Section (~70%): Points Box -->
+        <div class="player-profile-right">
+          <div class="rating-box">
+            <span class="rating-label">Circuit Points</span>
+            <div id="team-points" class="rating-score">0</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Active Roster Section -->
+    <section class="page-section">
+      <div class="section-content">
+        <span class="sub-heading">Lineup</span>
+        <h2 class="stats-title">Active Roster</h2>
+
+        <div id="roster-list" class="player-list"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <script src="players.js"></script>
+  <script src="teams.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const teamId = urlParams.get('id');
+
+    const team = teamsData.find(t => t.id === teamId);
+
+    if (team) {
+      document.title = `${team.name} - Team Profile | Apocalyptia`;
+      document.getElementById('team-name').textContent = team.name;
+      document.getElementById('team-points').textContent = team.points;
+      
+      const logoEl = document.getElementById('team-logo');
+      logoEl.src = team.logo;
+      logoEl.alt = `${team.name} Logo`;
+
+      // Render Active Roster from playersData
+      const rosterContainer = document.getElementById('roster-list');
+
+      team.rosterPlayerIds.forEach(playerId => {
+        const player = playersData.find(p => p.id === playerId);
+
+        if (player) {
+          const card = document.createElement('div');
+          card.className = 'player-card';
+
+          card.innerHTML = `
+            <div class="card-avatar">
+              <img src="${player.avatar}" alt="${player.name}">
+            </div>
+
+            <div class="card-details">
+              <a href="player.html?id=${player.id}" class="player-name">${player.name}</a>
+              <span class="player-role">${player.role}</span>
+            </div>
+
+            <div class="card-team">
+              <span class="team-label">Rating</span>
+              <span class="team-name" style="color: #ff6600; font-weight: 800;">${player.rating}</span>
+            </div>
+
+            <div class="card-action">
+              <a href="player.html?id=${player.id}" class="btn-sm">View Player</a>
+            </div>
+          `;
+          rosterContainer.appendChild(card);
+        }
+      });
+    } else {
+      document.getElementById('team-name').textContent = "Team Not Found";
+    }
+  </script>
+</body>
+</html>

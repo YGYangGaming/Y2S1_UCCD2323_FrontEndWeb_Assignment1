@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Player Profile - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Site Header & Navigation Bar -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html" class="active">Player Rankings</a></li>
+          <li><a href="team-rankings.html">Team Rankings</a></li>
+          <li><a href="upcoming-events.html">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Player Hero Banner -->
+    <section class="player-banner-section">
+      <div class="player-banner-container">
+        
+        <!-- Left Section (~30%): Picture, Name, Age -->
+        <div class="player-profile-left">
+          <div class="profile-avatar">
+            <img id="player-avatar" src="" alt="Player Avatar">
+          </div>
+          <h1 id="player-name" class="profile-name">Loading...</h1>
+          <p class="profile-age">Age: <span id="player-age">--</span></p>
+        </div>
+
+        <!-- Right Section (~70%): Team, Team Role, Big Rating -->
+        <div class="player-profile-right">
+          <div class="profile-meta">
+            <div class="meta-item">
+              <span class="meta-label">Team</span>
+              <a id="player-team" href="#" class="meta-value team-link">--</a>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Role</span>
+              <span id="player-role" class="meta-value">--</span>
+            </div>
+          </div>
+
+          <!-- Highlight Rating Box -->
+          <div class="rating-box">
+            <span class="rating-label">HLTV 2.0 Rating</span>
+            <div id="player-rating" class="rating-score">0.00</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Player Stats Section -->
+    <section class="page-section">
+      <div class="section-content">
+        <span class="sub-heading">Performance Metrics</span>
+        <h2 class="stats-title">Player Statistics</h2>
+
+        <div class="stats-container">
+
+          <!-- Stat Item Template Component -->
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Firepower</span>
+              <span id="val-firepower" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-firepower" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Entrying</span>
+              <span id="val-entrying" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-entrying" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Trading</span>
+              <span id="val-trading" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-trading" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Opening</span>
+              <span id="val-opening" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-opening" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Clutching</span>
+              <span id="val-clutching" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-clutching" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Sniping</span>
+              <span id="val-sniping" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-sniping" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <div class="stat-group">
+            <div class="stat-info">
+              <span class="stat-name">Utility</span>
+              <span id="val-utility" class="stat-value">0 / 100</span>
+            </div>
+            <div class="stat-bar-bg">
+              <div id="bar-utility" class="stat-bar-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+
+        </div> <!-- /.stats-container -->
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <!-- Include Player Data and Renderer Script -->
+  <script src="players.js"></script>
+  <script>
+    // 1. Get the URL query parameters (e.g., player.html?id=v1per)
+    const urlParams = new URLSearchParams(window.location.search);
+    const playerId = urlParams.get('id');
+
+    // 2. Fetch player data object matching the ID
+    const player = playersData.find(p => p.id === playerId);
+
+    if (player) {
+      // 3. Inject text and image properties
+      document.title = `${player.name} - Player Profile | Apocalyptia`;
+      document.getElementById('player-name').textContent = player.name;
+      document.getElementById('player-age').textContent = player.age;
+      document.getElementById('player-role').textContent = player.role;
+      document.getElementById('player-rating').textContent = player.rating;
+      
+      const avatarEl = document.getElementById('player-avatar');
+      avatarEl.src = player.avatar;
+      avatarEl.alt = `${player.name} Avatar`;
+
+      const teamEl = document.getElementById('player-team');
+      teamEl.textContent = player.teamName;
+      teamEl.href = player.teamUrl;
+
+      // 4. Inject numerical stats and progress bar fills
+      const stats = player.stats;
+      for (const [statKey, statVal] of Object.entries(stats)) {
+        const valEl = document.getElementById(`val-${statKey}`);
+        const barEl = document.getElementById(`bar-${statKey}`);
+
+        if (valEl && barEl) {
+          valEl.textContent = `${statVal} / 100`;
+          barEl.style.width = `${statVal}%`;
+        }
+      }
+    } else {
+      // Fallback if ID is invalid or missing
+      document.getElementById('player-name').textContent = "Player Not Found";
+    }
+  </script>
+</body>
+</html>

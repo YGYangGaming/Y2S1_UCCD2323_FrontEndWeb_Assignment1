@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Event Details - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html">Player Rankings</a></li>
+          <li><a href="team-rankings.html">Team Rankings</a></li>
+          <li><a href="upcoming-events.html" class="active">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="player-banner-section">
+      <div class="player-banner-container">
+        
+        <!-- Left Section (~30%): Date & Time Box -->
+        <div class="player-profile-left">
+          <div class="rating-box" style="margin-bottom: 0;">
+            <span id="event-month" class="rating-label">AUG</span>
+            <div id="event-day" class="rating-score" style="font-size: 3.5rem;">25</div>
+          </div>
+        </div>
+
+        <!-- Right Section (~70%): Event Name & Location -->
+        <div class="player-profile-right">
+          <div class="profile-meta">
+            <h1 id="event-title" class="profile-name" style="font-size: 2.2rem; color: #ff6600;">Loading...</h1>
+            <div class="meta-item" style="margin-top: 0.5rem;">
+              <span class="meta-label">Time & Location</span>
+              <span id="event-time-loc" class="meta-value" style="font-size: 1.1rem; color: #cccccc;">--</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Detailed Info -->
+    <section class="page-section">
+      <div class="section-content" style="max-width: 800px; text-align: left;">
+        <span class="sub-heading">Event Overview</span>
+        <p id="event-desc" style="font-size: 1.2rem; color: #ffffff; margin-bottom: 1.5rem;"></p>
+        <p id="event-details" style="color: #a0a0b0; line-height: 1.8;"></p>
+        
+        <div style="margin-top: 2rem;">
+          <a href="upcoming-events.html" class="btn-sm">← Back to All Events</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <script src="events.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('id');
+
+    const event = eventsData.find(e => e.id === eventId);
+
+    if (event) {
+      document.title = `${event.title} - Apocalyptia`;
+      document.getElementById('event-title').textContent = event.title;
+      document.getElementById('event-month').textContent = event.month;
+      document.getElementById('event-day').textContent = event.day;
+      document.getElementById('event-time-loc').textContent = `🕒 ${event.time} | 📍 ${event.location}`;
+      document.getElementById('event-desc').textContent = event.description;
+      document.getElementById('event-details').textContent = event.details;
+    } else {
+      document.getElementById('event-title').textContent = "Event Not Found";
+    }
+  </script>
+</body>
+</html>

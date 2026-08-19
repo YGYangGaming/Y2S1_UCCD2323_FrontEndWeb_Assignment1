@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player Rankings - Apocalyptia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Reusable Header & Navigation Bar -->
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <img src="logo.png" alt="Apocalyptia Logo">
+        <span>Apocalyptia</span>
+      </a>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="player-rankings.html" class="active">Player Rankings</a></li>
+          <li><a href="team-rankings.html">Team Rankings</a></li>
+          <li><a href="upcoming-events.html">Upcoming Events</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main>
+    <!-- Page Banner -->
+    <section class="banner">
+      <div class="section-content">
+        <span class="sub-heading">CS2 Roster Leaderboard</span>
+        <h2>Player Rankings</h2>
+        <p>Top individual players representing Apocalyptia in Counter-Strike 2.</p>
+      </div>
+    </section>
+
+    <!-- Player List Section -->
+    <section class="page-section">
+      <div class="section-content">
+        
+        <!-- Target Container for Dynamic Cards -->
+        <div id="player-list" class="player-list"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Apocalyptia - UTAR Esports Club. All rights reserved.</p>
+  </footer>
+
+  <!-- Include Player Data and Generation Script -->
+  <script src="players.js"></script>
+  <script>
+    const container = document.getElementById('player-list');
+
+    // Sort players by rank ascending (#1, #2, #3...)
+    playersData.sort((a, b) => a.rank - b.rank);
+
+    // Generate HTML card for each player object
+    playersData.forEach(player => {
+      const card = document.createElement('div');
+      card.className = 'player-card';
+
+      card.innerHTML = `
+        <div class="card-rank">#${player.rank}</div>
+        
+        <div class="card-avatar">
+          <img src="${player.avatar}" alt="${player.name} Avatar">
+        </div>
+
+        <div class="card-details">
+          <a href="player.html?id=${player.id}" class="player-name">${player.name}</a>
+          <span class="player-role">${player.role}</span>
+        </div>
+
+        <div class="card-team">
+          <span class="team-label">Team</span>
+          <a href="${player.teamUrl}" class="team-name">${player.teamName}</a>
+        </div>
+
+        <div class="card-action">
+          <a href="player.html?id=${player.id}" class="btn-sm">View Profile</a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
