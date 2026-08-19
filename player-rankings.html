@@ -3,28 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Player Rankings - Apocalyptia</title>
+  <title>Apocalyptia Esports</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Responsive Header -->
   <header>
     <div class="nav-container">
       <a href="index.html" class="brand-logo">
         <img src="logo.png" alt="Apocalyptia Logo">
         <span>Apocalyptia</span>
       </a>
-      <nav class="navbar">
+
+      <!-- Hamburger toggle button -->
+      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle Navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <!-- Navigation links / Mobile drawer -->
+      <nav id="navbar" class="navbar">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="player-rankings.html" class="active">Player Rankings</a></li>
+          <li><a href="player-rankings.html">Player Rankings</a></li>
           <li><a href="team-rankings.html">Team Rankings</a></li>
           <li><a href="upcoming-events.html">Upcoming Events</a></li>
         </ul>
       </nav>
     </div>
   </header>
+
+  <!-- Backdrop overlay when drawer is open -->
+  <div id="nav-overlay" class="nav-overlay"></div>
+
+  <!-- Page content goes here -->
+
+  <!-- Global Scripts -->
+  <script src="nav.js"></script>
+</body>
+</html>
 
   <main>
     <section class="banner">
