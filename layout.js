@@ -1,27 +1,60 @@
 $(document).ready(function() {
   // Load Shared Header
   $('#header-placeholder').load('header.html', function() {
-    // Ensure wrapper acts as sticky block
     $(this).css({
-        'position': 'sticky',
-        'top': '0',
-        'z-index': '1000'
+      'position': 'sticky',
+      'top': '0',
+      'z-index': '1000'
     });
 
-    // Run navigation setup
     if (typeof initNav === 'function') {
-        initNav();
+      initNav();
     }
-});
+  });
 
-  // Load Shared Footer
+  // Load Shared Footer & Fetch Social Links via REST API
   $('#footer-placeholder').load('footer.html', function() {
-    $('.social-btn').on('click', function(e) {
-      e.preventDefault();
-      const targetUrl = $(this).data('url');
-      if (targetUrl) {
-        window.open(targetUrl, '_blank', 'noopener,noreferrer');
-      }
-    });
+    fetchSocialLinks();
   });
 });
+
+// RESTful Fetch Call to retrieve social data
+function fetchSocialLinks() {
+  fetch('socials.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      renderSocialButtons(data);
+    })
+    .catch(error => {
+      console.error('Error fetching social endpoints:', error);
+    });
+}
+
+// Render dynamic social buttons to DOM
+function renderSocialButtons(socials) {
+  const container = $('#social-links-container');
+  container.empty();
+
+  socials.forEach(item => {
+    const btn = $('<button>')
+      .addClass('social-btn')
+      .attr('data-url', item.url)
+      .text(item.name);
+
+    container.append(btn);
+  });
+
+  // Attach event handler after dynamic injection
+  container.on('click', '.social-btn', function(e) {
+    e.preventDefault();
+    const targetUrl = $(this).attr('data-url');
+    if (targetUrl) {
+      window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    }
+  });
+}
