@@ -993,3 +993,72 @@ footer {
     color: #ff6600;
   }
 }
+
+/* ==========================================
+   History Page Styles
+   ========================================== */
+.history-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.history-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.history-item {
+  background-color: #121216;
+  border: 1px solid #262630;
+  border-left: 4px solid #ff6600;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem; /* Ensures gap between text info and action button */
+}
+
+.history-item-info {
+  flex-grow: 1; /* Fixes layout misalignment across different text lengths */
+  min-width: 0;   /* Prevents flex overflow on long titles */
+  text-align: left;
+}
+
+.history-item-info h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Truncates ultra-long event titles cleanly */
+}
+
+.history-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background-color: #262630;
+  color: #ff6600;
+  margin-right: 0.5rem;
+}
+
+.history-time {
+  color: #a0a0b0;
+  font-size: 0.85rem;
+}
+
+.empty-msg {
+  color: #666677;
+  font-style: italic;
+  padding: 2rem 0;
+  text-align: center;
+}
