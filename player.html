@@ -139,8 +139,11 @@
   <!-- Footer -->
   <div id="footer-placeholder"></div>
 
+
+  
   <!-- Include Player Data and Renderer Script -->
   <script src="players.js"></script>
+  <script src="tracker.js"></script>
   <script>
     // 1. Get the URL query parameters (e.g., player.html?id=v1per)
     const urlParams = new URLSearchParams(window.location.search);
@@ -150,6 +153,9 @@
     const player = playersData.find(p => p.id === playerId);
 
     if (player) {
+      // Record the visit in local/session storage
+      trackPageVisit(player.name, 'player');
+
       // 3. Inject text and image properties
       document.title = `${player.name} - Player Profile | Apocalyptia`;
       document.getElementById('player-name').textContent = player.name;

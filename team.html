@@ -53,6 +53,7 @@
 
   <script src="players.js"></script>
   <script src="teams.js"></script>
+  <script src="tracker.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const teamId = urlParams.get('id');
@@ -60,6 +61,9 @@
     const team = teamsData.find(t => t.id === teamId);
 
     if (team) {
+      // Record the visit in local/session storage
+      trackPageVisit(team.name, 'team');
+
       document.title = `${team.name} - Team Profile | Apocalyptia`;
       document.getElementById('team-name').textContent = team.name;
       document.getElementById('team-points').textContent = team.points;

@@ -57,6 +57,7 @@
   <div id="footer-placeholder"></div>
 
   <script src="events.js"></script>
+  <script src="tracker.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const eventId = urlParams.get('id');
@@ -64,6 +65,9 @@
     const event = eventsData.find(e => e.id === eventId);
 
     if (event) {
+      // Record the visit in local/session storage
+      trackPageVisit(event.title, 'event');
+      
       document.title = `${event.title} - Apocalyptia`;
       document.getElementById('event-title').textContent = event.title;
       document.getElementById('event-month').textContent = event.month;
