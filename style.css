@@ -20,15 +20,25 @@ a {
   transition: all 0.3s ease;
 }
 
+/* Prevent horizontal scrolling on mobile without breaking position: sticky */
+html, body {
+  overflow-x: clip; 
+}
+
 /* ==========================================================================
    2. HEADER & NAVIGATION BAR
    ========================================================================== */
-header {
-  background-color: #000000;
-  border-bottom: 2px solid #ff6600;
+/* The parent wrapper dynamically injected by layout.js receives sticky bounds */
+#header-placeholder {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+}
+
+header {
+  background-color: #121216;
+  border-bottom: 1px solid #262630;
   width: 100%;
 }
 
@@ -39,7 +49,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 /* Brand Logo + Text Group */
@@ -48,10 +58,13 @@ header {
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .brand-logo img {
-  height: 40px; /* Adjust height as needed */
+  height: 36px;
   width: auto;
   object-fit: contain;
 }
@@ -73,15 +86,17 @@ header {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 0.5rem;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar a {
   display: block;
   padding: 0.6rem 1.1rem;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.9rem;
+  color: #a0a0b0;
+  font-weight: 500;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   position: relative;
@@ -168,9 +183,9 @@ main {
 
 /* Mobile adjustments for the banner text and spacing */
 @media (max-width: 768px) {
-  /* Prevent horizontal scrolling on the entire page */
+  /* Safely handle page overflow on small screens */
   html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   /* Reduce padding on the left/right of the banner */
@@ -290,7 +305,7 @@ footer {
 
 /* Mobile rule for the view button */
 @media (max-width: 600px) {
-  .player-card .card-action { /* Replace with your button's class name */
+  .player-card .card-action {
     width: 100%;
     text-align: center;
     margin-top: 0.5rem;
@@ -871,63 +886,6 @@ footer {
 
 .btn-clear:hover {
   background-color: #ff6600;
-}
-
-/* ==========================================================================
-   DESKTOP HEADER & NAVBAR (UNTOUCHED ORIGINAL)
-   ========================================================================== */
-header {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  background-color: #121216;
-  border-bottom: 1px solid #262630;
-  z-index: 1000;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-}
-
-.brand-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 1.25rem;
-}
-
-.brand-logo img {
-  height: 36px;
-  width: auto;
-}
-
-.navbar ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar a {
-  color: #a0a0b0;
-  text-decoration: none;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.navbar a:hover,
-.navbar a.active {
-  color: #ff6600;
 }
 
 /* ==========================================================================

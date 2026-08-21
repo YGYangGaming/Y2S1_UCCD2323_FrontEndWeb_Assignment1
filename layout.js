@@ -1,18 +1,12 @@
 $(document).ready(function() {
   // Load Shared Header
   $('#header-placeholder').load('header.html', function() {
-    $(this).css({
-      'position': 'sticky',
-      'top': '0',
-      'z-index': '1000'
-    });
-
     if (typeof initNav === 'function') {
       initNav();
     }
   });
 
-  // Load Shared Footer & Fetch Social Links via REST API
+  // Load Shared Footer
   $('#footer-placeholder').load('footer.html', function() {
     fetchSocialLinks();
   });
