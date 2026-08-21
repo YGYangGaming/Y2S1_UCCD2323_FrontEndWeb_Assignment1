@@ -650,6 +650,12 @@ footer {
   transition: all 0.3s ease;
 }
 
+/* Ensure details section takes remaining space so buttons align on desktop */
+.card-details {
+  flex: 1;
+  min-width: 0;
+}
+
 .team-card:hover {
   background-color: #181820;
   border-color: #ff6600;
@@ -668,6 +674,34 @@ footer {
 
 .team-card-title:hover {
   color: #ff6600;
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 600px) {
+  .team-card {
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Keep Rank, Logo, and Name on top row */
+  .card-rank,
+  .card-avatar,
+  .card-details {
+    align-self: center;
+  }
+
+  /* Flex button down to its own row with full width for consistent alignment */
+  .card-action {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .card-action .btn-sm {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ==========================================================================
